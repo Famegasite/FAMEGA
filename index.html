@@ -1,0 +1,20 @@
+#### HTML
+```html
+<div id="form-container">
+  <form id="login-form">
+    <h2>Iniciar Sesión</h2>
+    <input type="text" id="username" placeholder="Usuario" required />
+    <input type="password" id="password" placeholder="Contraseña" required />
+    <button type="submit">Entrar</button>
+    <p>¿No tienes cuenta? <span id="switch-to-register">Regístrate</span></p>
+  </form>
+
+  <form id="register-form" style="display: none;">
+    <h2>Registro</h2>
+    <input type="text" id="new-username" placeholder="Usuario" required />
+    <input type="password" id="new-password" placeholder="Contraseña" required />
+    <input type="password" id="confirm-password" placeholder="Confirmar Contraseña" required />
+    <button type="submit">Registrar</button>
+    <p>¿Ya tienes cuenta? <span id="switch-to-login">Inicia sesión</span></p>
+  </form>
+</div>
