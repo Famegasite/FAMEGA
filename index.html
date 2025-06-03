@@ -1,18 +1,18 @@
-<div id="form-container">
-  <form id="login-form">
-    <h2>Iniciar Sesión</h2>
-    <input type="text" id="username" placeholder="Usuario" required />
-    <input type="password" id="password" placeholder="Contraseña" required />
-    <button type="submit">Entrar</button>
-    <p>¿No tienes cuenta? <span id="switch-to-register">Regístrate</span></p>
-  </form>
+<!DOCTYPE html>
+<html>
+<head>
+           <title>Iniciar de Sesion</title>
+</head>
+<body>
+    <h2>Iniciar Sesion</h2>
+    <form action="login.php" method="post">
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required><br><br>
 
-  <form id="register-form" style="display: none;">
-    <h2>Registro</h2>
-    <input type="text" id="new-username" placeholder="Usuario" required />
-    <input type="password" id="new-password" placeholder="Contraseña" required />
-    <input type="password" id="confirm-password" placeholder="Confirmar Contraseña" required />
-    <button type="submit">Registrar</button>
-    <p>¿Ya tienes cuenta? <span id="switch-to-login">Inicia sesión</span></p>
-  </form>
-</div>
+        <label for="contraseña">Contrasena:</label>
+        <input type="password" id="contraseña" name="contraseña" required><br><br>
+
+        <input type="submit" value="Ingresar">
+    </form>
+</body>
+</html>
