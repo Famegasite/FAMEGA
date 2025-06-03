@@ -1,5 +1,3 @@
-#### JavaScript
-```javascript
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
 const switchToRegister = document.getElementById("switch-to-register");
