@@ -4,23 +4,15 @@
            <title>Iniciar de Sesion</title>
 </head>
 <body>
-   <form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">Nunca compartas tu E-mail con nadie.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Recordar</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Ingresar</button>
-</form>
-         <input class="form-control" id="disabledInput" type="text" placeholder="Entrada deshabilitada aquí..." disabled>  
+    <h2>Iniciar Sesion</h2>
+    <form action="login.php" method="post">
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required><br><br>
+
+        <label for="contraseña">Contrasena:</label>
+        <input type="password" id="contraseña" name="contraseña" required><br><br>
+
+        <input type="submit" value="Ingresar">
     </form>
 </body>
 </html>
