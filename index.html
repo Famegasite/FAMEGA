@@ -3,28 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inicio de Sesión</title>
+  <title>Inicio de Sesión - Y2K Nostálgico</title>
   <!-- Bootstrap CSS desde CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* CSS personalizado */
+    /* Estilo Y2K nostálgico */
     body {
-      background: #f2f2f2;
-      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
     .login-container {
       max-width: 400px;
-      margin: 80px auto;
-      padding: 25px;
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.7); /* Fondo translúcido */
+      border: 2px solid #ff007f;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff007f;
+    }
+    
+    h2 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 5px #ff007f;
+    }
+    
+    .form-label {
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000;
+    }
+    
+    .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #ff007f;
+      color: #fff;
+      text-shadow: 1px 1px 2px #000;
+    }
+    
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-color: #ff007f;
+      box-shadow: 0 0 5px #ff007f;
+    }
+    
+    .btn-primary {
+      background-color: #ff007f;
+      border-color: #ff007f;
+      text-transform: uppercase;
+      font-weight: bold;
+      box-shadow: 0 0 10px #ff007f;
+    }
+    
+    .btn-primary:hover {
+      background-color: #e60073;
+      border-color: #e60073;
     }
   </style>
 </head>
 <body>
   <div class="login-container">
-    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+    <h2>Inicia Sesión</h2>
     <form id="loginForm">
       <div class="mb-3">
         <label for="inputEmail" class="form-label">Correo Electrónico</label>
@@ -43,22 +91,20 @@
   <script>
     // JavaScript para manejar el envío del formulario
     document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Evita el envío tradicional del formulario
+      event.preventDefault(); // Previene el envío tradicional
       
-      // Obtener los valores ingresados
       const email = document.getElementById("inputEmail").value.trim();
       const password = document.getElementById("inputPassword").value.trim();
       
-      // Validación básica
       if (!email || !password) {
-        alert("Por favor, complete todos los campos.");
+        alert("Por favor, completa todos los campos.");
         return;
       }
       
-      // Aquí podrías integrar una llamada a una API de autenticación
-      console.log("Correo Electrónico:", email);
+      // Aquí podrías realizar validaciones adicionales o integrar una API
+      console.log("Correo electrónico:", email);
       console.log("Contraseña:", password);
-      alert("Inicio de sesión exitoso! Revisar consola para detalles.");
+      alert("¡Inicio de sesión exitoso! Revisa la consola para más detalles.");
     });
   </script>
 </body>
