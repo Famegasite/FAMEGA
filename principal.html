@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySocial 2000 - Tu red social retro</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0078d7;
+            background-image: linear-gradient(to bottom, #0078d7, #5db2ff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 900px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Barra de título */
+        .title-bar {
+            background: linear-gradient(to right, #0078d7, #00a2e8);
+            color: white;
+            padding: 8px 15px;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #005a9e;
+        }
+
+        .title-bar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .title-bar .logo img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .title-bar .controls button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            display: flex;
+        }
+
+        /* Barra lateral */
+        .sidebar {
+            width: 200px;
+            background-color: #e6f2ff;
+            border-right: 1px solid #cce0ff;
+            padding: 15px;
+        }
+
+        .user-profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        .user-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .user-status {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #00cc00;
+            margin-right: 5px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            margin-bottom: 5px;
+        }
+
+        .menu a {
+            display: block;
+            padding: 8px 10px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .menu a:hover {
+            background-color: #cce0ff;
+        }
+
+        .menu a.active {
+            background-color: #0078d7;
+            color: white;
+        }
+
+        .menu-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        /* Contenido central */
+        .content {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .welcome-message {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-message h2 {
+            color: #0078d7;
+            margin-top: 0;
+        }
+
+        .post-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-box textarea {
+            width: 100%;
+            height: 80px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            resize: none;
+            font-family: inherit;
+            margin-bottom: 10px;
+        }
+
+        .post-box button {
+            background: linear-gradient(to bottom, #0078d7, #005a9e);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .post-box button:hover {
+            background: linear-gradient(to bottom, #0066cc, #004d99);
+        }
+
+        .posts {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .post-user {
+            font-weight: bold;
+        }
+
+        .post-time {
+            font-size: 12px;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        .post-content {
+            margin-bottom: 10px;
+        }
+
+        .post-actions {
+            display: flex;
+        }
+
+        .post-actions button {
+            background: none;
+            border: none;
+            color: #0078d7;
+            cursor: pointer;
+            margin-right: 15px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .post-actions button i {
+            margin-right: 5px;
+        }
+
+        /* Barra de amigos */
+        .friends-bar {
+            width: 200px;
+            background-color: #e6f2ff;
+            border-left: 1px solid #cce0ff;
+            padding: 15px;
+        }
+
+        .friends-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #0078d7;
+        }
+
+        .friend {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .friend-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .friend-name {
+            font-size: 14px;
+        }
+
+        .friend-status {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+
+        .online {
+            background-color: #00cc00;
+        }
+
+        .away {
+            background-color: #ffcc00;
+        }
+
+        .busy {
+            background-color: #ff3300;
+        }
+
+        .offline {
+            background-color: #999;
+        }
+
+        /* Efectos Frutiger Aero */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .blur-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/8KM6PVL.jpg') no-repeat center center;
+            background-size: cover;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        /* Chat */
+        .chat-window {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .chat-header {
+            background: linear-gradient(to right, #0078d7, #00a2e8);
+            color: white;
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+        }
+
+        .chat-content {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+        }
+
+        .chat-message .sender {
+            font-weight: bold;
+            color: #0078d7;
+        }
+
+        .chat-message .time {
+            font-size: 10px;
+            color: #999;
+            margin-left: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .chat-input button {
+            background: linear-gradient(to bottom, #0078d7, #005a9e);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Notificaciones */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            max-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #0078d7;
+        }
+
+        .notification-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #999;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="blur-bg"></div>
+    <div class="container glass-effect">
+        <div class="title-bar">
+            <div class="logo">
+                <img src="https://i.imgur.com/8KM6PVL.png" alt="MySocial 2000 Logo">
+                <span>MySocial 2000</span>
+            </div>
+            <div class="controls">
+                <button><i class="fa fa-minus"></i></button>
+                <button><i class="fa fa-square-o"></i></button>
+                <button><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="user-profile">
+                    <img src="https://i.imgur.com/JqYeYnR.jpg" alt="User Avatar" class="user-avatar">
+                    <div class="user-name">Usuario2000</div>
+                    <div class="user-status">
+                        <span class="status-indicator"></span>
+                        En línea
+                    </div>
+                    <button style="background: linear-gradient(to bottom, #0078d7, #005a9e); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;">Cambiar estado</button>
+                </div>
+
+                <ul class="menu">
+                    <li><a href="#" class="active"><i class="fa fa-home menu-icon"></i> Inicio</a></li>
+                    <li><a href="#"><i class="fa fa-user menu-icon"></i> Perfil</a></li>
+                    <li><a href="#"><i class="fa fa-users menu-icon"></i> Amigos</a></li>
+                    <li><a href="#"><i class="fa fa-comments menu-icon"></i> Mensajes</a></li>
+                    <li><a href="#"><i class="fa fa-camera menu-icon"></i> Fotos</a></li>
+                    <li><a href="#"><i class="fa fa-calendar menu-icon"></i> Eventos</a></li>
+                    <li><a href="#"><i class="fa fa-cog menu-icon"></i> Configuración</a></li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <div class="welcome-message">
+                    <h2>¡Bienvenido de nuevo, Usuario2000!</h2>
+                    <p>¿Qué estás pensando hoy? Comparte tus ideas con tus amigos.</p>
+                </div>
+
+                <div class="post-box">
+                    <textarea placeholder="¿Qué estás pensando?"></textarea>
+                    <button><i class="fa fa-paper-plane"></i> Publicar</button>
+                </div>
+
+                <div class="posts">
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="https://i.imgur.com/JqYeYnR.jpg" alt="User Avatar" class="post-avatar">
+                            <div class="post-user">Usuario2000</div>
+                            <div class="post-time">Hace 5 minutos</div>
+                        </div>
+                        <div class="post-content">
+                            ¡Acabo de unirme a MySocial 2000! ¡Es como volver a los buenos tiempos de internet! 😊
+                        </div>
+                        <div class="post-actions">
+                            <button><i class="fa fa-thumbs-up"></i> Me gusta</button>
+                            <button><i class="fa fa-comment"></i> Comentar</button>
+                            <button><i class="fa fa-share"></i> Compartir</button>
+                        </div>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="https://i.imgur.com/3ZqW9bQ.jpg" alt="User Avatar" class="post-avatar">
+                            <div class="post-user">AmigoRetro</div>
+                            <div class="post-time">Hace 1 hora</div>
+                        </div>
+                        <div class="post-content">
+                            ¿Recuerdan cuando pasábamos horas chateando en el MSN? ¡Qué tiempos aquellos! 🥲
+                        </div>
+                        <div class="post-actions">
+                            <button><i class="fa fa-thumbs-up"></i> Me gusta (12)</button>
+                            <button><i class="fa fa-comment"></i> Comentar (3)</button>
+                            <button><i class="fa fa-share"></i> Compartir</button>
+                        </div>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="https://i.imgur.com/5vQwYQx.jpg" alt="User Avatar" class="post-avatar">
+                            <div class="post-user">ChicaWeb</div>
+                            <div class="post-time">Ayer a las 15:42</div>
+                        </div>
+                        <div class="post-content">
+                            Acabo de subir nuevas fotos de mi viaje. ¡Échenles un vistazo! ✈️🌴
+                        </div>
+                        <div class="post-actions">
+                            <button><i class="fa fa-thumbs-up"></i> Me gusta (24)</button>
+                            <button><i class="fa fa-comment"></i> Comentar (7)</button>
+                            <button><i class="fa fa-share"></i> Compartir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="friends-bar">
+                <div class="friends-title">Amigos en línea (3)</div>
+                
+                <div class="friend">
+                    <img src="https://i.imgur.com/3ZqW9bQ.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <div class="friend-name">AmigoRetro</div>
+                    <div class="friend-status online"></div>
+                </div>
+                
+                <div class="friend">
+                    <img src="https://i.imgur.com/7vQwYQx.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <div class="friend-name">Geek2000</div>
+                    <div class="friend-status away"></div>
+                </div>
+                
+                <div class="friend">
+                    <img src="https://i.imgur.com/5vQwYQx.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <div class="friend-name">ChicaWeb</div>
+                    <div class="friend-status online"></div>
+                </div>
+
+                <div class="friends-title">Amigos desconectados (2)</div>
+                
+                <div class="friend">
+                    <img src="https://i.imgur.com/9zQwYQx.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <div class="friend-name">BlogueroXP</div>
+                    <div class="friend-status offline"></div>
+                </div>
+                
+                <div class="friend">
+                    <img src="https://i.imgur.com/2vQwYQx.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <div class="friend-name">FanDeEmo</div>
+                    <div class="friend-status offline"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ventana de chat -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header" id="chatHeader">
+            <span>Chat con AmigoRetro</span>
+            <div>
+                <button style="background: none; border: none; color: white; cursor: pointer;"><i class="fa fa-minus"></i></button>
+                <button style="background: none; border: none; color: white; cursor: pointer;"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class="chat-content" id="chatContent">
+            <div class="chat-message">
+                <span class="sender">AmigoRetro</span>
+                <span class="time">15:30</span>
+                <div>¡Hola! ¿Cómo estás?</div>
+            </div>
+            <div class="chat-message">
+                <span class="sender">Tú</span>
+                <span class="time">15:32</span>
+                <div>¡Hola! Bien, ¿y tú? 😊</div>
+            </div>
+            <div class="chat-message">
+                <span class="sender">AmigoRetro</span>
+                <span class="time">15:33</span>
+                <div>Todo bien por aquí. ¡Me encanta esta red social retro!</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Escribe un mensaje..." id="chatInput">
+            <button id="sendMessage"><i class="fa fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Notificación -->
+    <div class="notification" id="notification">
+        <button class="notification-close" id="closeNotification">&times;</button>
+        <div class="notification-title">Nueva solicitud de amistad</div>
+        <div>BlogueroXP quiere ser tu amigo/a</div>
+        <div style="margin-top: 10px;">
+            <button style="background: linear-gradient(to bottom, #0078d7, #005a9e); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; margin-right: 5px;">Aceptar</button>
+            <button style="background: linear-gradient(to bottom, #cccccc, #999999); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;">Rechazar</button>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar notificación después de 3 segundos
+        setTimeout(function() {
+            document.getElementById('notification').style.display = 'block';
+        }, 3000);
+
+        // Cerrar notificación
+        document.getElementById('closeNotification').addEventListener('click', function() {
+            document.getElementById('notification').style.display = 'none';
+        });
+
+        // Mostrar/ocultar chat al hacer clic en un amigo
+        document.querySelectorAll('.friend').forEach(function(friend) {
+            friend.addEventListener('click', function() {
+                const chatWindow = document.getElementById('chatWindow');
+                if (chatWindow.style.display === 'block') {
+                    chatWindow.style.display = 'none';
+                } else {
+                    chatWindow.style.display = 'block';
+                    // Cambiar nombre en el chat según el amigo seleccionado
+                    const friendName = this.querySelector('.friend-name').textContent;
+                    document.querySelector('#chatHeader span').textContent = 'Chat con ' + friendName;
+                }
+            });
+        });
+
+        // Minimizar chat al hacer clic en el botón de minimizar
+        document.querySelector('#chatHeader button:first-child').addEventListener('click', function() {
+            const chatContent = document.getElementById('chatContent');
+            const chatInput = document.querySelector('.chat-input');
+            if (chatContent.style.display === 'none') {
+                chatContent.style.display = 'block';
+                chatInput.style.display = 'flex';
+            } else {
+                chatContent.style.display = 'none';
+                chatInput.style.display = 'none';
+            }
+        });
+
+        // Cerrar chat al hacer clic en el botón de cerrar
+        document.querySelector('#chatHeader button:last-child').addEventListener('click', function() {
+            document.getElementById('chatWindow').style.display = 'none';
+        });
+
+        // Enviar mensaje de chat
+        document.getElementById('sendMessage').addEventListener('click', function() {
+            const input = document.getElementById('chatInput');
+            if (input.value.trim() !== '') {
+                const chatContent = document.getElementById('chatContent');
+                const now = new Date();
+                const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chat-message';
+                messageDiv.innerHTML = `
+                    <span class="sender">Tú</span>
+                    <span class="time">${timeString}</span>
+                    <div>${input.value}</div>
+                `;
+                
+                chatContent.appendChild(messageDiv);
+                input.value = '';
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }
+        });
+
+        // Enviar mensaje al presionar Enter
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('sendMessage').click();
+            }
+        });
+
+        // Publicar nuevo post
+        document.querySelector('.post-box button').addEventListener('click', function() {
+            const textarea = document.querySelector('.post-box textarea');
+            if (textarea.value.trim() !== '') {
+                const postsContainer = document.querySelector('.posts');
+                const now = new Date();
+                const timeString = 'Hace unos momentos';
+                
+                const postDiv = document.createElement('div');
+                postDiv.className = 'post';
+                postDiv.innerHTML = `
+                    <div class="post-header">
+                        <img src="https://i.imgur.com/JqYeYnR.jpg" alt="User Avatar" class="post-avatar">
+                        <div class="post-user">Usuario2000</div>
+                        <div class="post-time">${timeString}</div>
+                    </div>
+                    <div class="post-content">
+                        ${textarea.value}
+                    </div>
+                    <div class="post-actions">
+                        <button><i class="fa fa-thumbs-up"></i> Me gusta</button>
+                        <button><i class="fa fa-comment"></i> Comentar</button>
+                        <button><i class="fa fa-share"></i> Compartir</button>
+                    </div>
+                `;
+                
+                postsContainer.insertBefore(postDiv, postsContainer.firstChild);
+                textarea.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
