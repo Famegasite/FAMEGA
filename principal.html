@@ -731,5 +731,14 @@
             }
         });
     </script>
+    <script>
+    // Manejar cierre de sesión
+    document.querySelector('.menu a[href="#logout"]').addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+            window.location.href = 'index.html';
+        }
+    });
+</script>
 </body>
 </html>
