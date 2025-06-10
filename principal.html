@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Famega</title>
+    <title>FAMEGA - Tu red social retro</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         /* Estilos generales */
         body {
@@ -16,6 +17,29 @@
             min-height: 100vh;
         }
 
+        /* Fondo con efecto blur */
+        .blur-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/images/background.jpg') no-repeat center center;
+            background-size: cover;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        /* Logo en esquina */
+        .corner-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            z-index: 100;
+        }
+
         /* Contenedor principal */
         .container {
             width: 900px;
@@ -24,6 +48,7 @@
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+            position: relative;
         }
 
         /* Barra de título */
@@ -275,6 +300,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            cursor: pointer;
         }
 
         .friend-avatar {
@@ -319,18 +345,6 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .blur-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://i.imgur.com/8KM6PVL.jpg') no-repeat center center;
-            background-size: cover;
-            filter: blur(5px);
-            z-index: -1;
         }
 
         /* Chat */
@@ -443,16 +457,54 @@
             cursor: pointer;
             color: #999;
         }
+
+        /* Burbujas decorativas */
+        .bubble {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            position: fixed;
+            animation: float 6s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        .bubble-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+        }
+
+        .bubble-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 15%;
+            right: 10%;
+            animation-duration: 8s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="blur-bg"></div>
+    
+    <!-- Burbujas decorativas -->
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    
+    <!-- Logo en esquina -->
+    <img src="assets/images/logo.png" alt="FAMEGA Logo" class="corner-logo">
+
     <div class="container glass-effect">
         <div class="title-bar">
             <div class="logo">
-                <img src="https://i.imgur.com/8KM6PVL.png" alt="MySocial 2000 Logo">
-                <span>MySocial 2000</span>
+                <img src="assets/images/logo.png" alt="FAMEGA Logo">
+                <span>FAMEGA</span>
             </div>
             <div class="controls">
                 <button><i class="fa fa-minus"></i></button>
@@ -464,8 +516,8 @@
         <div class="main-content">
             <div class="sidebar">
                 <div class="user-profile">
-                    <img src="https://i.imgur.com/JqYeYnR.jpg" alt="User Avatar" class="user-avatar">
-                    <div class="user-name">Usuario2000</div>
+                    <img src="assets/images/user-avatar.jpg" alt="User Avatar" class="user-avatar">
+                    <div class="user-name">UsuarioFAMEGA</div>
                     <div class="user-status">
                         <span class="status-indicator"></span>
                         En línea
@@ -481,12 +533,13 @@
                     <li><a href="#"><i class="fa fa-camera menu-icon"></i> Fotos</a></li>
                     <li><a href="#"><i class="fa fa-calendar menu-icon"></i> Eventos</a></li>
                     <li><a href="#"><i class="fa fa-cog menu-icon"></i> Configuración</a></li>
+                    <li><a href="#logout"><i class="fa fa-sign-out menu-icon"></i> Cerrar sesión</a></li>
                 </ul>
             </div>
 
             <div class="content">
                 <div class="welcome-message">
-                    <h2>¡Bienvenido de nuevo, Usuario2000!</h2>
+                    <h2>¡Bienvenido de nuevo, UsuarioFAMEGA!</h2>
                     <p>¿Qué estás pensando hoy? Comparte tus ideas con tus amigos.</p>
                 </div>
 
@@ -498,12 +551,12 @@
                 <div class="posts">
                     <div class="post">
                         <div class="post-header">
-                            <img src="https://i.imgur.com/JqYeYnR.jpg" alt="User Avatar" class="post-avatar">
-                            <div class="post-user">Usuario2000</div>
+                            <img src="assets/images/user-avatar.jpg" alt="User Avatar" class="post-avatar">
+                            <div class="post-user">UsuarioFAMEGA</div>
                             <div class="post-time">Hace 5 minutos</div>
                         </div>
                         <div class="post-content">
-                            ¡Acabo de unirme a MySocial 2000! ¡Es como volver a los buenos tiempos de internet! 😊
+                            ¡Acabo de unirme a FAMEGA! ¡Es como volver a los buenos tiempos de internet! 😊
                         </div>
                         <div class="post-actions">
                             <button><i class="fa fa-thumbs-up"></i> Me gusta</button>
@@ -514,7 +567,7 @@
 
                     <div class="post">
                         <div class="post-header">
-                            <img src="https://i.imgur.com/3ZqW9bQ.jpg" alt="User Avatar" class="post-avatar">
+                            <img src="assets/images/friend1.jpg" alt="User Avatar" class="post-avatar">
                             <div class="post-user">AmigoRetro</div>
                             <div class="post-time">Hace 1 hora</div>
                         </div>
@@ -530,7 +583,7 @@
 
                     <div class="post">
                         <div class="post-header">
-                            <img src="https://i.imgur.com/5vQwYQx.jpg" alt="User Avatar" class="post-avatar">
+                            <img src="assets/images/friend2.jpg" alt="User Avatar" class="post-avatar">
                             <div class="post-user">ChicaWeb</div>
                             <div class="post-time">Ayer a las 15:42</div>
                         </div>
@@ -550,19 +603,19 @@
                 <div class="friends-title">Amigos en línea (3)</div>
                 
                 <div class="friend">
-                    <img src="https://i.imgur.com/3ZqW9bQ.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <img src="assets/images/friend1.jpg" alt="Friend Avatar" class="friend-avatar">
                     <div class="friend-name">AmigoRetro</div>
                     <div class="friend-status online"></div>
                 </div>
                 
                 <div class="friend">
-                    <img src="https://i.imgur.com/7vQwYQx.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <img src="assets/images/friend3.jpg" alt="Friend Avatar" class="friend-avatar">
                     <div class="friend-name">Geek2000</div>
                     <div class="friend-status away"></div>
                 </div>
                 
                 <div class="friend">
-                    <img src="https://i.imgur.com/5vQwYQx.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <img src="assets/images/friend2.jpg" alt="Friend Avatar" class="friend-avatar">
                     <div class="friend-name">ChicaWeb</div>
                     <div class="friend-status online"></div>
                 </div>
@@ -570,13 +623,13 @@
                 <div class="friends-title">Amigos desconectados (2)</div>
                 
                 <div class="friend">
-                    <img src="https://i.imgur.com/9zQwYQx.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <img src="assets/images/friend3.jpg" alt="Friend Avatar" class="friend-avatar">
                     <div class="friend-name">BlogueroXP</div>
                     <div class="friend-status offline"></div>
                 </div>
                 
                 <div class="friend">
-                    <img src="https://i.imgur.com/2vQwYQx.jpg" alt="Friend Avatar" class="friend-avatar">
+                    <img src="assets/images/friend1.jpg" alt="Friend Avatar" class="friend-avatar">
                     <div class="friend-name">FanDeEmo</div>
                     <div class="friend-status offline"></div>
                 </div>
@@ -607,7 +660,7 @@
             <div class="chat-message">
                 <span class="sender">AmigoRetro</span>
                 <span class="time">15:33</span>
-                <div>Todo bien por aquí. ¡Me encanta esta red social retro!</div>
+                <div>Todo bien por aquí. ¡Me encanta FAMEGA!</div>
             </div>
         </div>
         <div class="chat-input">
@@ -645,100 +698,4 @@
                 if (chatWindow.style.display === 'block') {
                     chatWindow.style.display = 'none';
                 } else {
-                    chatWindow.style.display = 'block';
-                    // Cambiar nombre en el chat según el amigo seleccionado
-                    const friendName = this.querySelector('.friend-name').textContent;
-                    document.querySelector('#chatHeader span').textContent = 'Chat con ' + friendName;
-                }
-            });
-        });
-
-        // Minimizar chat al hacer clic en el botón de minimizar
-        document.querySelector('#chatHeader button:first-child').addEventListener('click', function() {
-            const chatContent = document.getElementById('chatContent');
-            const chatInput = document.querySelector('.chat-input');
-            if (chatContent.style.display === 'none') {
-                chatContent.style.display = 'block';
-                chatInput.style.display = 'flex';
-            } else {
-                chatContent.style.display = 'none';
-                chatInput.style.display = 'none';
-            }
-        });
-
-        // Cerrar chat al hacer clic en el botón de cerrar
-        document.querySelector('#chatHeader button:last-child').addEventListener('click', function() {
-            document.getElementById('chatWindow').style.display = 'none';
-        });
-
-        // Enviar mensaje de chat
-        document.getElementById('sendMessage').addEventListener('click', function() {
-            const input = document.getElementById('chatInput');
-            if (input.value.trim() !== '') {
-                const chatContent = document.getElementById('chatContent');
-                const now = new Date();
-                const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-                
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'chat-message';
-                messageDiv.innerHTML = `
-                    <span class="sender">Tú</span>
-                    <span class="time">${timeString}</span>
-                    <div>${input.value}</div>
-                `;
-                
-                chatContent.appendChild(messageDiv);
-                input.value = '';
-                chatContent.scrollTop = chatContent.scrollHeight;
-            }
-        });
-
-        // Enviar mensaje al presionar Enter
-        document.getElementById('chatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('sendMessage').click();
-            }
-        });
-
-        // Publicar nuevo post
-        document.querySelector('.post-box button').addEventListener('click', function() {
-            const textarea = document.querySelector('.post-box textarea');
-            if (textarea.value.trim() !== '') {
-                const postsContainer = document.querySelector('.posts');
-                const now = new Date();
-                const timeString = 'Hace unos momentos';
-                
-                const postDiv = document.createElement('div');
-                postDiv.className = 'post';
-                postDiv.innerHTML = `
-                    <div class="post-header">
-                        <img src="https://i.imgur.com/JqYeYnR.jpg" alt="User Avatar" class="post-avatar">
-                        <div class="post-user">Usuario2000</div>
-                        <div class="post-time">${timeString}</div>
-                    </div>
-                    <div class="post-content">
-                        ${textarea.value}
-                    </div>
-                    <div class="post-actions">
-                        <button><i class="fa fa-thumbs-up"></i> Me gusta</button>
-                        <button><i class="fa fa-comment"></i> Comentar</button>
-                        <button><i class="fa fa-share"></i> Compartir</button>
-                    </div>
-                `;
-                
-                postsContainer.insertBefore(postDiv, postsContainer.firstChild);
-                textarea.value = '';
-            }
-        });
-    </script>
-    <script>
-    // Manejar cierre de sesión
-    document.querySelector('.menu a[href="#logout"]').addEventListener('click', function(e) {
-        e.preventDefault();
-        if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
-            window.location.href = 'index.html';
-        }
-    });
-</script>
-</body>
-</html>
+                    chatWindow
