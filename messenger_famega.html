@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes/FAMEGA</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #0078d7, #5db2ff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .blur-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/background.jpg') no-repeat center center;
+            background-size: cover;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .bubble {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            position: fixed;
+            animation: float 6s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        .bubble-1 { width: 100px; height: 100px; top: 20%; left: 10%; }
+        .bubble-2 { width: 150px; height: 150px; bottom: 15%; right: 10%; animation-duration: 8s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .container {
+            width: 900px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .title-bar {
+            background: linear-gradient(to right, #0078d7, #00a2e8);
+            color: white;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .messages-content {
+            display: flex;
+            height: 500px;
+        }
+
+        .chat-list {
+            width: 250px;
+            background-color: #e6f2ff;
+            border-right: 1px solid #cce0ff;
+            overflow-y: auto;
+        }
+
+        .chat-item {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .chat-item:hover {
+            background-color: #cce0ff;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .chat-name {
+            font-weight: bold;
+            color: #0078d7;
+        }
+
+        .chat-window {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 15px;
+        }
+
+        .message .sender {
+            font-weight: bold;
+            color: #0078d7;
+        }
+
+        .message .text {
+            margin: 5px 0;
+        }
+
+        .message .time {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-input button {
+            background: linear-gradient(to bottom, #0078d7, #005a9e);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="blur-bg"></div>
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+
+    <div class="container">
+        <div class="title-bar">
+            <span><i class="fa fa-comments"></i> Mensajes</span>
+            <span>UsuarioFAMEGA</span>
+        </div>
+
+        <div class="messages-content">
+            <div class="chat-list">
+                <div class="chat-item">
+                    <img src="images/friend1.jpg" alt="Avatar" class="chat-avatar">
+                    <span class="chat-name">AmigoRetro</span>
+                </div>
+                <div class="chat-item">
+                    <img src="images/friend2.jpg" alt="Avatar" class="chat-avatar">
+                    <span class="chat-name">ChatOchentero</span>
+                </div>
+                <!-- Agrega más contactos aquí -->
+            </div>
+
+            <div class="chat-window">
+                <div class="chat-messages">
+                    <div class="message">
+                        <div class="sender">AmigoRetro <span class="time">10:45 AM</span></div>
+                        <div class="text">¡Hola! ¿Recuerdas el zumbido del MSN? 😂</div>
+                    </div>
+                    <div class="message">
+                        <div class="sender">UsuarioFAMEGA <span class="time">10:46 AM</span></div>
+                        <div class="text">¡Claro! Extraño esos tiempos.</div>
+                    </div>
+                    <!-- Más mensajes -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Escribe tu mensaje...">
+                    <button><i class="fa fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
