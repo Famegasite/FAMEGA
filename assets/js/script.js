@@ -1,15 +1,97 @@
 /**
- * SCRIPT.JS COMPLETO Y CORREGIDO PARA FAMEGA
- * Funcionalidades:
+ * SCRIPT.JS COMPLETO PARA FAMEGA - FRUTIGER AERO
+ * Incluye:
  * - Sistema de login/registro
  * - Cambio día/noche con persistencia
+ * - Efectos visuales interactivos
  * - Validación de formularios
  * - Redirección a principal.html
- * - Precarga de recursos
  */
 
 // Variables globales
 let currentTheme = 'day'; // 'day' o 'night'
+
+// ========== EFECTOS VISUALES ========== //
+
+// Crear burbujas interactivas
+function createBubbles() {
+    const container = document.getElementById('bubbles-container');
+    if (!container) return;
+    
+    // Limpiar contenedor
+    container.innerHTML = '';
+    
+    // Crear 8 burbujas grandes
+    for (let i = 0; i < 8; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        
+        // Tamaño y posición aleatorios
+        const size = Math.random() * 150 + 50;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const delay = Math.random() * 10;
+        
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${posX}%`;
+        bubble.style.top = `${posY}%`;
+        bubble.style.animationDelay = `${delay}s`;
+        
+        // Efecto de movimiento al pasar el mouse
+        bubble.addEventListener('mousemove', (e) => {
+            if (e.target === bubble) {
+                const rect = bubble.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                bubble.style.transform = `translate(${(x - rect.width/2)/10}px, ${(y - rect.height/2)/10}px)`;
+            }
+        });
+        
+        bubble.addEventListener('mouseleave', () => {
+            bubble.style.transform = '';
+        });
+        
+        container.appendChild(bubble);
+    }
+    
+    // Crear partículas pequeñas (20 unidades)
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 5 + 1;
+        const posX = Math.random() * 100;
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 20;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `-${delay}s`;
+        
+        container.appendChild(particle);
+    }
+}
+
+// Efecto de ondas al hacer clic
+function setupRippleEffect() {
+    document.body.addEventListener('click', (e) => {
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple-effect';
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 1000);
+    });
+}
+
+// ========== FUNCIONALIDAD PRINCIPAL ========== //
 
 // Mostrar u ocultar pestañas
 function showTab(tabName) {
@@ -83,10 +165,10 @@ function toggleTheme() {
 
 // Función de login
 function login() {
+    const btn = document.querySelector('#login-form .aero-btn');
     try {
         const email = document.querySelector('#login-form input[type="text"]').value;
         const password = document.querySelector('#login-form input[type="password"]').value;
-        const btn = document.querySelector('#login-form .aero-btn');
         
         // Validación básica
         if (!email || !password) {
@@ -116,12 +198,12 @@ function login() {
 
 // Función de registro
 function register() {
+    const btn = document.querySelector('#register-form .aero-btn');
     try {
         const username = document.querySelector('#register-form input[type="text"]').value;
         const email = document.querySelector('#register-form input[type="email"]').value;
         const password = document.querySelector('#register-form input[type="password"]').value;
         const confirm = document.querySelector('#register-form input[type="password"]:nth-of-type(2)').value;
-        const btn = document.querySelector('#register-form .aero-btn');
         
         // Validación
         if (!username || !email || !password || !confirm) {
@@ -163,6 +245,10 @@ function register() {
         }, 1500);
     } catch (error) {
         console.error('Error en register:', error);
+        if (btn) {
+            btn.innerHTML = '<span>CREAR CUENTA</span><div class="btn-reflection"></div>';
+            btn.disabled = false;
+        }
     }
 }
 
@@ -211,7 +297,8 @@ function preloadResources() {
     });
 }
 
-// Inicialización
+// ========== INICIALIZACIÓN ========== //
+
 document.addEventListener('DOMContentLoaded', () => {
     try {
         // Precargar recursos
@@ -225,6 +312,10 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleTheme();
         }
         
+        // Crear efectos visuales
+        createBubbles();
+        setupRippleEffect();
+        
         // Asignar eventos
         document.querySelector('#login-form .aero-btn')?.addEventListener('click', login);
         document.querySelector('#register-form .aero-btn')?.addEventListener('click', register);
@@ -235,24 +326,25 @@ document.addEventListener('DOMContentLoaded', () => {
             favicon.href = favicon.href.split('?')[0] + '?' + new Date().getTime();
         }
         
-        // Marcar como cargado
-        setTimeout(() => {
-            document.body.classList.add('loaded');
-        }, 500);
+        // Efecto hover para botones
+        document.querySelectorAll('.aero-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-2px)';
+                btn.style.boxShadow = '0 6px 16px rgba(0, 162, 232, 0.4)';
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0)';
+                btn.style.boxShadow = '0 4px 12px rgba(0, 162, 232, 0.3)';
+            });
+        });
+        
+        // Cambiar tema aleatoriamente cada 30 segundos (solo para demo)
+        setInterval(() => {
+            if (Math.random() > 0.7) toggleTheme();
+        }, 30000);
+        
     } catch (error) {
         console.error('Error en la inicialización:', error);
     }
-});
-
-// Efectos hover para botones
-document.querySelectorAll('.aero-btn').forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
-        btn.style.transform = 'translateY(-2px)';
-        btn.style.boxShadow = '0 6px 16px rgba(0, 162, 232, 0.4)';
-    });
-    
-    btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translateY(0)';
-        btn.style.boxShadow = '0 4px 12px rgba(0, 162, 232, 0.3)';
-    });
 });
