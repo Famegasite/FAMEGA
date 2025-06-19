@@ -1,3 +1,23 @@
+function toggleTheme() {
+    const body = document.body;
+    const toggleBtn = document.querySelector('.theme-toggle');
+    
+    body.classList.toggle('night-mode');
+    
+    if (body.classList.contains('night-mode')) {
+        toggleBtn.innerHTML = '<i class="fas fa-sun"></i> MODO DÍA';
+    } else {
+        toggleBtn.innerHTML = '<i class="fas fa-moon"></i> MODO NOCHE';
+    }
+    
+    // Cambiar logo institucional para modo noche
+    const cornerLogo = document.querySelector('.corner-logo');
+    if (body.classList.contains('night-mode')) {
+        cornerLogo.style.filter = 'drop-shadow(0 0 10px rgba(255,255,255,0.3)) brightness(1.2)';
+    } else {
+        cornerLogo.style.filter = 'drop-shadow(0 0 8px rgba(0, 0, 0, 0.2))';
+    }
+}
 function showTab(tabName) {
     // Ocultar todos los formularios
     document.querySelectorAll('.frutiger-form').forEach(form => {
