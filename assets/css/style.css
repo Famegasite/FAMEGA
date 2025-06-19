@@ -83,18 +83,40 @@
 }
 
 }
+/* FONDOS DINÁMICOS - VERSIÓN MEJORADA */
+.sky-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -3;
+    transition: opacity 1.5s ease-in-out;
+    opacity: 0;
+}
 
 .sky-bg.day {
-    background-image: url('assets/img/day-sky.jpg');
+    background-image: url('../img/day-sky.jpg');
 }
 
 .sky-bg.night {
-    background-image: url('assets/img/night-sky.jpg');
+    background-image: url('../img/night-sky.jpg');
 }
 
 .sky-bg.active-bg {
     opacity: 1;
 }
+
+/* Asegurar que el body ocupe toda la pantalla */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 /* FUENTE FRUTIGER */
 @font-face {
