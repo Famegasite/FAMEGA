@@ -161,7 +161,7 @@ html, body {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 120px;
+    width: 200px;
     height: auto;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
     z-index: 1000;
