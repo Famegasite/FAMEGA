@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAMEGA - Inicia Sesión o Registrate </title>
+    <title>FAMEGA - Login Frutiger Aero</title>
+    <!-- Favicon corregido -->
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Botón modo día/noche -->
+    <!-- Botón modo día/noche en esquina superior izquierda -->
     <button class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i> MODO NOCHE
+        <i class="fas fa-moon"></i> <span class="theme-text">MODO NOCHE</span>
     </button>
 
     <!-- Fondos dinámicos -->
-    <div class="sky-bg day"></div>
+    <div class="sky-bg day active-bg"></div>
     <div class="sky-bg night"></div>
     <div class="aurora-bg"></div>
     
@@ -24,16 +25,17 @@
     <div class="bubble b2"></div>
     <div class="bubble b3"></div>
     
-    <!-- Logo institucional -->
+    <!-- Logo institucional más grande -->
     <img src="assets/img/logo-mag.png" alt="Logo Institucional" class="corner-logo">
 
     <!-- Contenedor principal -->
     <div class="glass-container">
         <div class="logo-container">
+            <!-- Logo FAMEGA más grande -->
             <img src="assets/img/logo-famega.png" alt="FAMEGA" class="logo">
             <div class="logo-glow"></div>
         </div>
-        
+           
         <!-- Pestañas -->
         <div class="tabs">
             <div class="tab active" onclick="showTab('login')">INICIAR SESIÓN</div>
