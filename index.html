@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Preloader para evitar flashes de contenido */
+        /* Preloader para evitar flashes */
         body:before {
             content: "";
             position: fixed;
@@ -32,15 +32,13 @@
         <i class="fas fa-moon"></i> <span class="theme-text">MODO NOCHE</span>
     </button>
 
-    <!-- Fondos dinámicos -->
+    <!-- Fondos dinámicos con blur -->
     <div class="sky-bg day active-bg"></div>
     <div class="sky-bg night"></div>
     <div class="aurora-bg"></div>
     
-    <!-- Burbujas flotantes -->
-    <div class="bubble b1"></div>
-    <div class="bubble b2"></div>
-    <div class="bubble b3"></div>
+    <!-- Burbujas interactivas -->
+    <div id="bubbles-container"></div>
     
     <!-- Logo institucional -->
     <img src="assets/img/logo-mag.png" alt="Logo Institucional" class="corner-logo">
