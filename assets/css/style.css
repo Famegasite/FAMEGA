@@ -1,4 +1,91 @@
-/* BOTÓN MODO DÍA/NOCHE - ESQUINA SUPERIOR IZQUIERDA */
+/* RESET Y ESTILOS BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #003366;
+}
+
+/* FUENTE FRUTIGER */
+@font-face {
+    font-family: 'Frutiger';
+    src: url('../fonts/frutiger.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* FONDOS DINÁMICOS */
+.sky-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -3;
+    transition: opacity 1.5s ease-in-out;
+    opacity: 0;
+}
+
+.sky-bg.day {
+    background-image: url('../img/day-sky.jpg');
+}
+
+.sky-bg.night {
+    background-image: url('../img/night-sky.jpg');
+}
+
+.sky-bg.active-bg {
+    opacity: 1;
+}
+
+/* EFECTO AURORA */
+.aurora-bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(100, 210, 255, 0.3), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(255, 170, 240, 0.3), transparent 40%);
+    animation: aurora-move 20s infinite alternate;
+    z-index: -2;
+}
+
+@keyframes aurora-move {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(5deg) scale(1.2); }
+}
+
+/* BURBUJAS FLOTANTES */
+.bubble {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: float 15s infinite ease-in-out;
+    z-index: -1;
+}
+
+.b1 { width: 150px; height: 150px; top: 20%; left: 10%; }
+.b2 { width: 100px; height: 100px; bottom: 15%; right: 15%; animation-delay: 3s; }
+.b3 { width: 200px; height: 200px; top: 60%; left: 70%; animation-delay: 5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+/* BOTÓN MODO DÍA/NOCHE */
 .theme-toggle {
     position: fixed;
     top: 25px;
@@ -10,7 +97,7 @@
     padding: 12px 20px;
     border-radius: 30px;
     cursor: pointer;
-    font-family: 'Frutiger', sans-serif;
+    font-family: 'Frutiger', 'Segoe UI', sans-serif;
     font-size: 16px;
     color: #003366;
     display: flex;
@@ -37,12 +124,12 @@
     font-weight: bold;
 }
 
-/* LOGO INSTITUCIONAL MÁS GRANDE */
+/* LOGO INSTITUCIONAL */
 .corner-logo {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 230px; /* Tamaño aumentado */
+    width: 120px;
     height: auto;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
     z-index: 1000;
@@ -54,136 +141,10 @@
     filter: drop-shadow(0 0 15px rgba(0, 162, 232, 0.5));
 }
 
-/* LOGO FAMEGA MÁS GRANDE */
-.logo {
-    width: 260px; /* Tamaño aumentado */
-    height: auto;
-    filter: drop-shadow(0 0 15px rgba(0, 162, 232, 0.4));
-}
-
-/* EFECTO DE AGUA MEJORADO */
-.water-effect {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px; /* Altura aumentada */
-    background: 
-        url('img/water-texture.png') repeat-x,
-        linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
-    background-size: 300px auto;
-    opacity: 0.6;
-    animation: water-flow 40s linear infinite;
-    mix-blend-mode: soft-light;
-}
-
-@keyframes water-flow {
-    0% { background-position-x: 0; }
-    100% { background-position-x: 1000px; }
-}
-
-}
-/* FONDOS DINÁMICOS - VERSIÓN MEJORADA */
-.sky-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -3;
-    transition: opacity 1.5s ease-in-out;
-    opacity: 0;
-}
-
-.sky-bg.day {
-    background-image: url('img/day-sky.jpg');
-}
-
-.sky-bg.night {
-    background-image: url('img/night-sky.jpg');
-}
-
-.sky-bg.active-bg {
-    opacity: 1;
-}
-
-/* Asegurar que el body ocupe toda la pantalla */
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-/* FUENTE FRUTIGER */
-@font-face {
-    font-family: 'Frutiger';
-    src: url('fonts/frutiger.ttf') format('truetype');
-}
-
-/* RESET Y ESTILOS BASE */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Frutiger', 'Segoe UI', sans-serif;
-    color: #003366;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-}
-
-/* EFECTO AURORA */
-.aurora-bg {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(100, 210, 255, 0.3), transparent 40%),
-        radial-gradient(circle at 70% 70%, rgba(255, 170, 240, 0.3), transparent 40%),
-        linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-    animation: aurora-move 20s infinite alternate;
-    z-index: -2;
-}
-
-@keyframes aurora-move {
-    0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(5deg) scale(1.2); }
-}
-
-/* BURBUJAS FLOTANTES */
-.bubble {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    filter: blur(20px);
-    animation: float 15s infinite ease-in-out;
-    z-index: -1;
-}
-
-.b1 { width: 150px; height: 150px; top: 20%; left: 10%; }
-.b2 { width: 100px; height: 100px; bottom: 15%; right: 15%; animation-delay: 3s; }
-.b3 { width: 200px; height: 200px; top: 60%; left: 70%; animation-delay: 5s; }
-
-@keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(5deg); }
-}
-
 /* CONTENEDOR PRINCIPAL */
 .glass-container {
     width: 380px;
+    max-width: 90%;
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -195,9 +156,10 @@ body {
         inset 0 0 0 1px rgba(255, 255, 255, 0.6);
     position: relative;
     overflow: hidden;
+    margin: 30px auto;
 }
 
-/* LOGO */
+/* LOGO FAMEGA */
 .logo-container {
     text-align: center;
     margin-bottom: 30px;
@@ -205,9 +167,9 @@ body {
 }
 
 .logo {
-    width: 180px;
+    width: 220px;
     height: auto;
-    filter: drop-shadow(0 0 10px rgba(0, 162, 232, 0.3));
+    filter: drop-shadow(0 0 15px rgba(0, 162, 232, 0.4));
     z-index: 2;
     position: relative;
 }
@@ -243,6 +205,10 @@ body {
     transition: all 0.3s;
 }
 
+.tab:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
 .tab.active {
     background: rgba(255, 255, 255, 0.8);
     color: #005a9e;
@@ -255,6 +221,13 @@ body {
 
 .frutiger-form.active-form {
     display: block;
+}
+
+.form-title {
+    color: inherit;
+    margin-bottom: 30px;
+    font-size: 20px;
+    text-align: center;
 }
 
 .input-group {
@@ -277,7 +250,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 10px;
     background: rgba(240, 248, 255, 0.4);
-    font-family: 'Frutiger', sans-serif;
+    font-family: 'Frutiger', 'Segoe UI', sans-serif;
     font-size: 14px;
     color: #003366;
     box-shadow: 
@@ -302,7 +275,7 @@ body {
     border: none;
     border-radius: 10px;
     color: white;
-    font-family: 'Frutiger', sans-serif;
+    font-family: 'Frutiger', 'Segoe UI', sans-serif;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
@@ -360,11 +333,33 @@ body {
     text-decoration: underline;
 }
 
+/* EFECTO DE AGUA */
+.water-effect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: 
+        url('../img/water-texture.png') repeat-x,
+        linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
+    background-size: 300px auto;
+    opacity: 0.6;
+    animation: water-flow 40s linear infinite;
+    mix-blend-mode: soft-light;
 }
 
 @keyframes water-flow {
     0% { background-position-x: 0; }
     100% { background-position-x: 1000px; }
+}
+
+/* MENSAJES DE ERROR */
+.error-message {
+    color: #ff3333;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
 }
 
 /* RESPONSIVE */
@@ -373,4 +368,27 @@ body {
         width: 90%;
         padding: 20px;
     }
+    
+    .logo {
+        width: 180px;
+    }
+    
+    .corner-logo {
+        width: 80px;
+    }
+    
+    .theme-toggle {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+/* ANIMACIONES DE CARGA */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    animation: spin 1s linear infinite;
 }
