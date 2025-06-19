@@ -42,7 +42,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 220px; /* Tamaño aumentado */
+    width: 280px; /* Tamaño aumentado */
     height: auto;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
     z-index: 1000;
@@ -56,7 +56,7 @@
 
 /* LOGO FAMEGA MÁS GRANDE */
 .logo {
-    width: 220px; /* Tamaño aumentado */
+    width: 280px; /* Tamaño aumentado */
     height: auto;
     filter: drop-shadow(0 0 15px rgba(0, 162, 232, 0.4));
 }
