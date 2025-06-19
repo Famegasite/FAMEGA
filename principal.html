@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio/FAMEGA</title>
+    <title>Inicio/Logo</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         /* Estilos generales */
@@ -487,6 +487,19 @@
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
         }
+        
+        /* Feed vacío */
+        .empty-feed {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        
+        .empty-feed-icon {
+            font-size: 48px;
+            color: #0078d7;
+            margin-bottom: 15px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -498,13 +511,13 @@
     <div class="bubble bubble-2"></div>
     
     <!-- Logo en esquina -->
-    <img src="images/logo.png" alt="FAMEGA Logo" class="corner-logo">
+    <img src="images/logo.png" alt="Logo" class="corner-logo">
 
     <div class="container glass-effect">
         <div class="title-bar">
             <div class="logo">
-                <img src="images/logo-famega.png" alt="FAMEGA Logo">
-                <span>FAMEGA</span>
+                <img src="images/logo-famega.png" alt="Logo">
+                <span>Logo</span>
             </div>
             <div class="controls">
                 <button><i class="fa fa-minus"></i></button>
@@ -517,7 +530,7 @@
             <div class="sidebar">
                 <div class="user-profile">
                     <img src="images/user-avatar.jpg" alt="User Avatar" class="user-avatar">
-                    <div class="user-name">UsuarioFAMEGA</div>
+                    <div class="user-name">Usuario</div>
                     <div class="user-status">
                         <span class="status-indicator"></span>
                         En línea
@@ -539,7 +552,7 @@
 
             <div class="content">
                 <div class="welcome-message">
-                    <h2>¡Bienvenido de nuevo, UsuarioFAMEGA!</h2>
+                    <h2>¡Bienvenido de nuevo, Usuario!</h2>
                     <p>¿Qué estás pensando hoy? Comparte tus ideas con tus amigos.</p>
                 </div>
 
@@ -549,89 +562,30 @@
                 </div>
 
                 <div class="posts">
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="images/user-avatar.jpg" alt="User Avatar" class="post-avatar">
-                            <div class="post-user">UsuarioFAMEGA</div>
-                            <div class="post-time">Hace 5 minutos</div>
+                    <div class="empty-feed">
+                        <div class="empty-feed-icon">
+                            <i class="fa fa-user-plus"></i>
                         </div>
-                        <div class="post-content">
-                            ¡Acabo de unirme a FAMEGA! ¡Es como volver a los buenos tiempos de internet! 😊
-                        </div>
-                        <div class="post-actions">
-                            <button><i class="fa fa-thumbs-up"></i> Me gusta</button>
-                            <button><i class="fa fa-comment"></i> Comentar</button>
-                            <button><i class="fa fa-share"></i> Compartir</button>
-                        </div>
-                    </div>
-
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="assets/images/friend1.jpg" alt="User Avatar" class="post-avatar">
-                            <div class="post-user">AmigoRetro</div>
-                            <div class="post-time">Hace 1 hora</div>
-                        </div>
-                        <div class="post-content">
-                            ¿Recuerdan cuando pasábamos horas chateando en el MSN? ¡Qué tiempos aquellos! 🥲
-                        </div>
-                        <div class="post-actions">
-                            <button><i class="fa fa-thumbs-up"></i> Me gusta (12)</button>
-                            <button><i class="fa fa-comment"></i> Comentar (3)</button>
-                            <button><i class="fa fa-share"></i> Compartir</button>
-                        </div>
-                    </div>
-
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="assets/images/friend2.jpg" alt="User Avatar" class="post-avatar">
-                            <div class="post-user">ChicaWeb</div>
-                            <div class="post-time">Ayer a las 15:42</div>
-                        </div>
-                        <div class="post-content">
-                            Acabo de subir nuevas fotos de mi viaje. ¡Échenles un vistazo! ✈️🌴
-                        </div>
-                        <div class="post-actions">
-                            <button><i class="fa fa-thumbs-up"></i> Me gusta (24)</button>
-                            <button><i class="fa fa-comment"></i> Comentar (7)</button>
-                            <button><i class="fa fa-share"></i> Compartir</button>
-                        </div>
+                        <h3>Tu feed está vacío</h3>
+                        <p>Añade a algún amigo o únete a una sociedad para empezar a ver publicaciones</p>
+                        <button style="background: linear-gradient(to bottom, #0078d7, #005a9e); color: white; border: none; padding: 8px 15px; border-radius: 4px; font-size: 14px; cursor: pointer; margin-top: 15px;">
+                            <i class="fa fa-user-plus"></i> Añadir amigos
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="friends-bar">
-                <div class="friends-title">Amigos en línea (3)</div>
+                <div class="friends-title">Amigos en línea (0)</div>
                 
-                <div class="friend">
-                    <img src="images/friend1.jpg" alt="Friend Avatar" class="friend-avatar">
-                    <div class="friend-name">AmigoRetro</div>
-                    <div class="friend-status online"></div>
-                </div>
-                
-                <div class="friend">
-                    <img src="assets/images/friend3.jpg" alt="Friend Avatar" class="friend-avatar">
-                    <div class="friend-name">Geek2000</div>
-                    <div class="friend-status away"></div>
-                </div>
-                
-                <div class="friend">
-                    <img src="assets/images/friend2.jpg" alt="Friend Avatar" class="friend-avatar">
-                    <div class="friend-name">ChicaWeb</div>
-                    <div class="friend-status online"></div>
+                <div style="text-align: center; color: #666; font-size: 13px; padding: 10px;">
+                    No tienes amigos conectados actualmente
                 </div>
 
-                <div class="friends-title">Amigos desconectados (2)</div>
+                <div class="friends-title">Amigos desconectados (0)</div>
                 
-                <div class="friend">
-                    <img src="assets/images/friend3.jpg" alt="Friend Avatar" class="friend-avatar">
-                    <div class="friend-name">BlogueroXP</div>
-                    <div class="friend-status offline"></div>
-                </div>
-                
-                <div class="friend">
-                    <img src="assets/images/friend1.jpg" alt="Friend Avatar" class="friend-avatar">
-                    <div class="friend-name">FanDeEmo</div>
-                    <div class="friend-status offline"></div>
+                <div style="text-align: center; color: #666; font-size: 13px; padding: 10px;">
+                    Aún no has añadido a ningún amigo
                 </div>
             </div>
         </div>
@@ -640,44 +594,28 @@
     <!-- Ventana de chat -->
     <div class="chat-window" id="chatWindow">
         <div class="chat-header" id="chatHeader">
-            <span>Chat con AmigoRetro</span>
+            <span>Chat</span>
             <div>
                 <button style="background: none; border: none; color: white; cursor: pointer;"><i class="fa fa-minus"></i></button>
                 <button style="background: none; border: none; color: white; cursor: pointer;"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="chat-content" id="chatContent">
-            <div class="chat-message">
-                <span class="sender">AmigoRetro</span>
-                <span class="time">15:30</span>
-                <div>¡Hola! ¿Cómo estás?</div>
-            </div>
-            <div class="chat-message">
-                <span class="sender">Tú</span>
-                <span class="time">15:32</span>
-                <div>¡Hola! Bien, ¿y tú? 😊</div>
-            </div>
-            <div class="chat-message">
-                <span class="sender">AmigoRetro</span>
-                <span class="time">15:33</span>
-                <div>Todo bien por aquí. ¡Me encanta FAMEGA!</div>
+            <div style="text-align: center; padding: 20px; color: #666;">
+                Selecciona un amigo para empezar a chatear
             </div>
         </div>
         <div class="chat-input">
-            <input type="text" placeholder="Escribe un mensaje..." id="chatInput">
-            <button id="sendMessage"><i class="fa fa-paper-plane"></i></button>
+            <input type="text" placeholder="Escribe un mensaje..." id="chatInput" disabled>
+            <button id="sendMessage" disabled><i class="fa fa-paper-plane"></i></button>
         </div>
     </div>
 
     <!-- Notificación -->
     <div class="notification" id="notification">
         <button class="notification-close" id="closeNotification">&times;</button>
-        <div class="notification-title">Nueva solicitud de amistad</div>
-        <div>BlogueroXP quiere ser tu amigo/a</div>
-        <div style="margin-top: 10px;">
-            <button style="background: linear-gradient(to bottom, #0078d7, #005a9e); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; margin-right: 5px;">Aceptar</button>
-            <button style="background: linear-gradient(to bottom, #cccccc, #999999); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;">Rechazar</button>
-        </div>
+        <div class="notification-title">Bienvenido a Logo</div>
+        <div>Empieza a conectar con otros usuarios para disfrutar de la experiencia completa</div>
     </div>
 
     <script>
@@ -698,4 +636,28 @@
                 if (chatWindow.style.display === 'block') {
                     chatWindow.style.display = 'none';
                 } else {
-                    chatWindow
+                    chatWindow.style.display = 'block';
+                }
+            });
+        });
+
+        // Cerrar chat
+        document.querySelector('#chatHeader button:last-child').addEventListener('click', function() {
+            document.getElementById('chatWindow').style.display = 'none';
+        });
+
+        // Minimizar chat
+        document.querySelector('#chatHeader button:first-child').addEventListener('click', function() {
+            const chatContent = document.getElementById('chatContent');
+            const chatInput = document.querySelector('.chat-input');
+            if (chatContent.style.display === 'none') {
+                chatContent.style.display = 'block';
+                chatInput.style.display = 'flex';
+            } else {
+                chatContent.style.display = 'none';
+                chatInput.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
