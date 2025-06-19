@@ -56,7 +56,7 @@
 
 /* LOGO FAMEGA MÁS GRANDE */
 .logo {
-    width: 280px; /* Tamaño aumentado */
+    width: 260px; /* Tamaño aumentado */
     height: auto;
     filter: drop-shadow(0 0 15px rgba(0, 162, 232, 0.4));
 }
@@ -85,11 +85,11 @@
 }
 
 .sky-bg.day {
-    background-image: url('img/day-sky.jpg');
+    background-image: url('assets/img/day-sky.jpg');
 }
 
 .sky-bg.night {
-    background-image: url('img/night-sky.jpg');
+    background-image: url('assets/img/night-sky.jpg');
 }
 
 .sky-bg.active-bg {
