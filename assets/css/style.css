@@ -1,3 +1,64 @@
+/* FONDOS DINÁMICOS */
+.sky-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -3;
+    transition: opacity 1s ease;
+}
+
+.sky-bg.day {
+    background-image: url('../img/day-sky.jpg');
+    opacity: 1;
+}
+
+.sky-bg.night {
+    background-image: url('../img/night-sky.jpg');
+    opacity: 0;
+}
+
+body.night-mode .sky-bg.day {
+    opacity: 0;
+}
+
+body.night-mode .sky-bg.night {
+    opacity: 1;
+}
+
+/* LOGO INSTITUCIONAL */
+.corner-logo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.2));
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.corner-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* EFECTO AGUA MEJORADO */
+.water-effect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: 
+        url('../img/water-texture.png') repeat-x,
+        linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+    background-size: 200px auto;
+    opacity: 0.5;
+    animation: water-flow 30s linear infinite;
+}
 /* FUENTE FRUTIGER */
 @font-face {
     font-family: 'Frutiger';
