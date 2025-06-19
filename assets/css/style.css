@@ -42,7 +42,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 120px; /* Tamaño aumentado */
+    width: 180px; /* Tamaño aumentado */
     height: auto;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
     z-index: 1000;
