@@ -42,7 +42,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 240px; /* Tamaño aumentado */
+    width: 230px; /* Tamaño aumentado */
     height: auto;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
     z-index: 1000;
@@ -99,11 +99,11 @@
 }
 
 .sky-bg.day {
-    background-image: url('../img/day-sky.jpg');
+    background-image: url('img/day-sky.jpg');
 }
 
 .sky-bg.night {
-    background-image: url('../img/night-sky.jpg');
+    background-image: url('img/night-sky.jpg');
 }
 
 .sky-bg.active-bg {
