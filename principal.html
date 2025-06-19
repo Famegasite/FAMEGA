@@ -176,6 +176,7 @@
             padding: 15px;
             margin-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Ocultar mensaje de bienvenida */
         }
 
         .welcome-message h2 {
@@ -500,6 +501,54 @@
             color: #0078d7;
             margin-bottom: 15px;
         }
+        
+        /* Modal de confirmación */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+        
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .modal-buttons button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .modal-confirm {
+            background: linear-gradient(to bottom, #0078d7, #005a9e);
+            color: white;
+        }
+        
+        .modal-cancel {
+            background: linear-gradient(to bottom, #cccccc, #999999);
+            color: white;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -513,11 +562,22 @@
     <!-- Logo en esquina -->
     <img src="assets/img/logo-famega.png" alt="Logo" class="corner-logo">
 
+    <!-- Modal de confirmación -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <h3>¿Estás seguro de que quieres cerrar sesión?</h3>
+            <div class="modal-buttons">
+                <button class="modal-confirm" id="confirmLogout">Sí</button>
+                <button class="modal-cancel" id="cancelLogout">No</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container glass-effect">
         <div class="title-bar">
             <div class="logo">
                 <img src="assets/img/logo-famega.png" alt="Logo">
-                <span></span>
+                <span>FAMEGA</span>
             </div>
             <div class="controls">
                 <button><i class="fa fa-minus"></i></button>
@@ -542,11 +602,11 @@
                     <li><a href="#" class="active"><i class="fa fa-home menu-icon"></i> Inicio</a></li>
                     <li><a href="#"><i class="fa fa-user menu-icon"></i> Perfil</a></li>
                     <li><a href="#"><i class="fa fa-users menu-icon"></i> Amigos</a></li>
-                    <li><a href="#"><i class="fa fa-comments menu-icon"></i> Mensajes</a></li>
+                    <li><a href="#" id="messagesLink"><i class="fa fa-comments menu-icon"></i> Mensajes</a></li>
                     <li><a href="#"><i class="fa fa-camera menu-icon"></i> Fotos</a></li>
                     <li><a href="#"><i class="fa fa-calendar menu-icon"></i> Eventos</a></li>
                     <li><a href="#"><i class="fa fa-cog menu-icon"></i> Configuración</a></li>
-                    <li><a href="#logout"><i class="fa fa-sign-out menu-icon"></i> Cerrar sesión</a></li>
+                    <li><a href="#" id="logoutLink"><i class="fa fa-sign-out menu-icon"></i> Cerrar sesión</a></li>
                 </ul>
             </div>
 
@@ -594,20 +654,22 @@
     <!-- Ventana de chat -->
     <div class="chat-window" id="chatWindow">
         <div class="chat-header" id="chatHeader">
-            <span>Chat</span>
+            <span>Chat conmigo mismo</span>
             <div>
                 <button style="background: none; border: none; color: white; cursor: pointer;"><i class="fa fa-minus"></i></button>
                 <button style="background: none; border: none; color: white; cursor: pointer;"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="chat-content" id="chatContent">
-            <div style="text-align: center; padding: 20px; color: #666;">
-                Selecciona un amigo para empezar a chatear
+            <div class="chat-message">
+                <span class="sender">Sistema</span>
+                <span class="time">Ahora</span>
+                <div>Este es tu chat personal. Puedes enviarte mensajes a ti mismo.</div>
             </div>
         </div>
         <div class="chat-input">
-            <input type="text" placeholder="Escribe un mensaje..." id="chatInput" disabled>
-            <button id="sendMessage" disabled><i class="fa fa-paper-plane"></i></button>
+            <input type="text" placeholder="Escribe un mensaje..." id="chatInput">
+            <button id="sendMessage"><i class="fa fa-paper-plane"></i></button>
         </div>
     </div>
 
@@ -629,16 +691,58 @@
             document.getElementById('notification').style.display = 'none';
         });
 
-        // Mostrar/ocultar chat al hacer clic en un amigo
-        document.querySelectorAll('.friend').forEach(function(friend) {
-            friend.addEventListener('click', function() {
-                const chatWindow = document.getElementById('chatWindow');
-                if (chatWindow.style.display === 'block') {
-                    chatWindow.style.display = 'none';
-                } else {
-                    chatWindow.style.display = 'block';
-                }
-            });
+        // Mostrar chat al hacer clic en Mensajes
+        document.getElementById('messagesLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('chatWindow').style.display = 'block';
+        });
+
+        // Funcionalidad de chat consigo mismo
+        document.getElementById('sendMessage').addEventListener('click', function() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const chatContent = document.getElementById('chatContent');
+                const now = new Date();
+                const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chat-message';
+                messageDiv.innerHTML = `
+                    <span class="sender">Tú</span>
+                    <span class="time">${timeString}</span>
+                    <div>${message}</div>
+                `;
+                
+                chatContent.appendChild(messageDiv);
+                input.value = '';
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }
+        });
+
+        // Permitir enviar mensaje con Enter
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('sendMessage').click();
+            }
+        });
+
+        // Mostrar modal al hacer clic en Cerrar sesión
+        document.getElementById('logoutLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('logoutModal').style.display = 'flex';
+        });
+
+        // Cancelar cierre de sesión
+        document.getElementById('cancelLogout').addEventListener('click', function() {
+            document.getElementById('logoutModal').style.display = 'none';
+        });
+
+        // Confirmar cierre de sesión
+        document.getElementById('confirmLogout').addEventListener('click', function() {
+            alert('Sesión cerrada (esto es una simulación)');
+            document.getElementById('logoutModal').style.display = 'none';
         });
 
         // Cerrar chat
