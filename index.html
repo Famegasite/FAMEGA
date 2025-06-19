@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Fondo dinámico día/noche -->
+    <!-- Botón modo día/noche -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i> MODO NOCHE
+    </button>
+
+    <!-- Fondos dinámicos -->
     <div class="sky-bg day"></div>
     <div class="sky-bg night"></div>
     <div class="aurora-bg"></div>
@@ -46,7 +51,7 @@
                 <input type="password" placeholder="Contraseña" class="glass-input">
             </div>
             
-            <button type="button" class="aero-btn">
+            <button type="button" class="aero-btn" onclick="login()">
                 <span>INGRESAR</span>
                 <div class="btn-reflection"></div>
             </button>
@@ -75,7 +80,7 @@
                 <input type="password" placeholder="Confirmar contraseña" class="glass-input">
             </div>
             
-            <button type="button" class="aero-btn">
+            <button type="button" class="aero-btn" onclick="register()">
                 <span>CREAR CUENTA</span>
                 <div class="btn-reflection"></div>
             </button>
