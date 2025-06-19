@@ -91,5 +91,32 @@
     </div>
 
     <script src="assets/js/script.js"></script>
+    
+    <!-- Agrega esto temporalmente antes de </body> -->
+<div style="position: fixed; bottom: 10px; left: 10px; background: white; padding: 10px; z-index: 9999;">
+    <p>Estado de fondos:</p>
+    <p id="debug-day">Day image: Cargando...</p>
+    <p id="debug-night">Night image: Cargando...</p>
+</div>
+
+<script>
+// Verificador de carga de imágenes
+function checkImage(url, elementId) {
+    const img = new Image();
+    img.onload = function() {
+        document.getElementById(elementId).textContent = `${url}: Carga exitosa`;
+    };
+    img.onerror = function() {
+        document.getElementById(elementId).textContent = `${url}: Error al cargar`;
+    };
+    img.src = url;
+}
+
+// Verificar imágenes al cargar
+window.addEventListener('load', () => {
+    checkImage('assets/img/day-sky.jpg', 'debug-day');
+    checkImage('assets/img/night-sky.jpg', 'debug-night');
+});
+</script>
 </body>
 </html>
