@@ -34,32 +34,46 @@ function showTab(tabName) {
         tabs[1].classList.add('active');
     }
 }
-
-// Función para cambiar entre temas día/noche
+// Función mejorada para cambiar temas
 function toggleTheme() {
     const body = document.body;
-    const toggleBtn = document.querySelector('.theme-toggle');
     const dayBg = document.querySelector('.sky-bg.day');
     const nightBg = document.querySelector('.sky-bg.night');
-    const cornerLogo = document.querySelector('.corner-logo');
     
     // Cambiar tema
     currentTheme = currentTheme === 'day' ? 'night' : 'day';
     body.classList.toggle('night-mode');
     
-    // Cambiar fondos
+    // Cambiar fondos con verificación de existencia
     if (currentTheme === 'night') {
-        dayBg.classList.remove('active-bg');
-        nightBg.classList.add('active-bg');
-        toggleBtn.innerHTML = '<i class="fas fa-sun"></i> <span class="theme-text">MODO DÍA</span>';
-        cornerLogo.style.filter = 'drop-shadow(0 0 15px rgba(255,255,255,0.4)) brightness(1.3)';
+        if (dayBg) dayBg.classList.remove('active-bg');
+        if (nightBg) nightBg.classList.add('active-bg');
     } else {
-        nightBg.classList.remove('active-bg');
-        dayBg.classList.add('active-bg');
-        toggleBtn.innerHTML = '<i class="fas fa-moon"></i> <span class="theme-text">MODO NOCHE</span>';
-        cornerLogo.style.filter = 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.3))';
-    }
+        if (nightBg) nightBg.classList.remove('active-bg');
+        if (dayBg) dayBg.classList.add('active-bg');
+
+        // Función para precargar imágenes
+function preloadImages() {
+    const images = [
+        'assets/img/day-sky.jpg',
+        'assets/img/night-sky.jpg'
+    ];
     
+    images.forEach(img => {
+        new Image().src = img;
+    });
+}
+
+// Inicialización mejorada
+document.addEventListener('DOMContentLoaded', () => {
+    // Precargar imágenes
+    preloadImages();
+    
+    // Configurar tema inicial
+    const dayBg = document.querySelector('.sky-bg.day');
+    if (dayBg) dayBg.classList.add('active-bg');
+    }
+      
     // Guardar preferencia en localStorage
     localStorage.setItem('themePreference', currentTheme);
 }
